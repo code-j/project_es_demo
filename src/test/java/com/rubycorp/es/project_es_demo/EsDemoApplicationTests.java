@@ -8,11 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Date;
 import java.util.Map;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class ProjectEsDemoApplicationTests {
+public class EsDemoApplicationTests {
 
     @Autowired
     ElasticSearchApi elasticSearchApi;
@@ -27,6 +28,7 @@ public class ProjectEsDemoApplicationTests {
         weather.setCity("Seoul");
         weather.setTemperature(10.2);
         weather.setSeason("Winter");
+        weather.setDate(new Date());
 
         Map<String, Object> result = elasticSearchApi.callElasticApi("POST", url, weather, null);
         System.out.println(result.get("resultCode"));
@@ -41,6 +43,7 @@ public class ProjectEsDemoApplicationTests {
         weather.setCity("Tokyo");
         weather.setTemperature(12.3);
         weather.setSeason("Winter");
+        weather.setDate(new Date());
 
         Map<String, Object> result = elasticSearchApi.callElasticApi("PUT", url, weather, null);
         System.out.println(result.get("resultCode"));
